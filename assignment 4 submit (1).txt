@@ -1,0 +1,219 @@
+///////////////Q1
+
+#include <cmath>
+#include <iostream>
+using namespace std;
+
+class Point {
+private:
+    double x, y;
+public:
+    Point(double _x, double _y) : x(_x), y(_y) {}
+    double _x() { return x; }
+    double _y() { return y; }
+    double distanceTo(const Point & p) { return sqrt((x-p.x)*(x-p.x) + (y-p.y)*(y-p.y)); }
+};
+
+
+
+class Line {
+private:
+    double  slope,Y;
+
+public:
+
+   Line(double a, double b) {
+    slope = a;
+    Y = b;
+    }
+    Line(double x1, double y1,double x2, double y2){
+    slope = (y2-y1)/(x2-x1);
+    Y=y1-slope*x1;
+     ;
+    }
+
+    double distanceTo(Point p){
+
+    return (fabs((-slope*p._x())+(p._y())-Y)/sqrt((1)+(slope*slope)));
+
+    }
+
+    Point intersection(Line ln){
+      return Point((Y-ln.Y)/(-slope+ln.slope),(slope*(Y-ln.Y)/(-slope+ln.slope)+slope));
+     }
+};
+
+
+
+/////////Q2
+
+Point solve(double a1, double b1, double c1, double a2, double b2, double c2) {
+  Line L1(-a1/b1,-c1/b1);
+  Line L2(-a2/b2,-c2/b2);
+    return L1.intersection(L2);
+ }
+
+
+
+
+
+/////////Q3
+
+class Student {
+private:
+    int  ID;
+    string first,last;
+
+public:
+
+   Student(int a, string b, string c) {
+    ID = a;
+    first = b;
+    last =c;
+    }
+
+
+    int getID(){
+    return ID;
+    }
+
+    virtual string getType() = 0;
+
+    virtual void printInfo(){
+    cout << getType() << endl;
+    cout << ID << endl;
+    cout << first << endl;
+    cout << last << endl;
+    }
+
+};
+
+
+
+/////////Q4
+
+class ResearchStudent: public Student {
+private:
+
+    string super,thes;
+
+public:
+
+   ResearchStudent(int a, string b, string c, string d, string e): Student(a,b,c)
+    {
+   this->super = d;
+    this ->thes = e;
+    }
+
+    void printInfo(){
+    Student::printInfo();
+    cout << super << endl;
+    cout << thes << endl;
+
+    }
+
+    virtual string getType(){
+    return "Research Student";
+    }
+
+
+};
+
+
+////////////Q5
+
+class TaughtStudent: public Student {
+private:
+
+    string  mod[10];
+    int nummods;
+
+public:
+
+   TaughtStudent(int a, string b, string c):Student(a,b,c) {
+    this->nummods = 0;
+    }
+    bool registerFor(const string & moduleName) {
+
+    if(nummods<10){
+        mod[nummods] = moduleName;
+        nummods++;
+        cout << "module added" << endl;
+        return 1;
+    }
+    else{
+            cout << "Too Many modules" << endl;
+            return 0;}
+    }
+    void printInfo(){
+    Student::printInfo();
+    cout << nummods << endl;
+    for(int y=0;y<nummods;y++){
+    cout << mod[y] << endl;
+    }
+    }
+
+    string getType(){
+    return "Taught Student";
+    }
+};
+
+
+//////////////Q6
+
+void studentTester(){
+ResearchStudent rs1(2019, "jim", "oman", "sam", "balls"),rs2(2018, "cian", "mcg", "sam", "idk");
+TaughtStudent ts1(2019, "jam", "kam"),ts2(2017, "bibo", "vaj");
+ts1.registerFor("math");
+ts1.registerFor("prog");
+ts1.registerFor("english");
+ts2.registerFor("science");
+ts2.registerFor("religion");
+ts2.registerFor("sphe");
+
+Student* myArray[4]= {&rs1, &rs2, &ts1, &ts2};
+for(int y=0;y<4;y++){
+        myArray[y]->printInfo();
+}
+}
+
+
+
+
+///////////Q7
+#include <iostream>
+#include <cmath>
+#include <string>
+using std::cout;
+using std::endl;
+using std::string;
+
+
+class Employee {
+private:
+    string name;
+    static int totalNumberEmployees,nextEmpolyeeNumber;
+public:
+
+    Employee(string nm) : name(nm) { ++nextEmpolyeeNumber;
+    totalNumberEmployees++; }
+    ~Employee() { --totalNumberEmployees; }
+    static int numEmployees() { return totalNumberEmployees; }
+};
+
+int Employee::nextEmpolyeeNumber = 1001; 
+int Employee::totalNumberEmployees = 0;
+
+int main() {
+
+ cout << "Number of employees " << Employee::numEmployees() << endl;
+    {
+        Employee* e1 = new Employee("John Smith");
+    /*
+    should have delete e1 to get rid of the employee object because it is in the 
+    heap and is not automatically deleted when it goes out of scope.
+    */
+    }
+  cout << "Number of employees " << Employee::numEmployees() << endl;
+}
+

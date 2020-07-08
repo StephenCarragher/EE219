@@ -1,0 +1,268 @@
+
+
+///// Q1
+
+
+#include <iostream>
+
+using namespace std;
+
+void printSpacedString(char str[]) {
+
+    int i=0;
+    while (str[i] != '\0') {
+    cout << str[i] << ' ';
+    i++;
+    }
+    cout << i;
+
+}
+
+
+int main()
+{
+    printSpacedString("Hello World!");
+
+    return 0;
+}
+
+//////////Q2
+
+
+#include <iostream>
+
+using namespace std;
+
+int largest(int a, int b, int c, int d) {
+
+if (a>b && a>c && a>d)
+return a;
+else if (b>a && b>c && b>d)
+return b;
+else if (c>b && b>c && c>d)
+return c;
+else
+return d;
+
+
+}
+
+
+
+
+
+int main()
+{
+int a=0;
+
+   a = largest (5,7,6,9);
+
+    cout << "largest number is " << a << endl;
+
+    return 0;
+}
+
+
+///////////Q3
+
+#include <iostream>
+
+using namespace std;
+
+void minMax(const double arr[], const int size, double & minVal, double & maxVal) {
+int i=0;
+
+for(i=0;i<=size;i++){
+
+    if( arr[i] < maxVal )
+        maxVal = arr[i];
+    if( arr[i] > minVal )
+        minVal = arr[i];
+}
+}
+
+int main()
+{
+
+double arr[] = {-4.3,7.0,10.4,3.9,1.2,9.8,11.3};
+double min=0, max=0;
+minMax(arr, sizeof(arr)/sizeof(arr[0]), min, max);
+cout << "Q3: array min is " << min << " and max is " << max << endl;
+    return 0;
+}
+
+
+//////////Q4
+
+#include <iostream>
+
+using namespace std;
+
+void swap( int & a, int & b) {
+int tep=0;
+tep = a;
+a = b;
+b = tep;
+}
+
+int main()
+{
+int a = 10;
+int b = 20;
+swap(a,b); // calling your swap function
+cout << "Swapped, now a = " << a << " and b = " << b << endl;
+    return 0;
+}
+
+///////////Q5
+
+#include <iostream>
+
+using namespace std;
+
+void swap( int* a, int* b) {
+int tep=0;
+tep = *a;
+*a = *b;
+*b = tep;
+}
+
+int main()
+{
+  int c = 100;
+    int d = 200;
+    swap(&c,&d);
+    cout << "Swapped, now c = " << c << " and d = " << d << endl;
+}
+
+
+
+///////////Q6
+
+#include <iostream>
+
+using namespace std;
+
+double range(double data[], int size) {
+return data[1]-data[0];
+}
+void minMax(const double arr[], const int size, double & minVal, double & maxVal) {
+int i=0;
+for(i=0;i<=size;i++){
+    if( arr[i] < maxVal )
+        maxVal = arr[i];
+    if( arr[i] > minVal )
+        minVal = arr[i];
+}
+}
+int main()
+{
+ double arr[] = {-1.0, 6.3, -2.5, 10.7, 8.7};
+ double min=0, max=0, a=0;
+ minMax(arr, sizeof(arr)/sizeof(arr[0]), min, max);
+ double rng[] = { min, max};
+ a = range(rng, sizeof(arr)/sizeof(arr[0]));
+
+    cout << "Range is = " << a << endl;
+}
+
+/////////Q7
+
+
+#include <iostream>
+
+using namespace std;
+
+unsigned char getLowerByte(int num) {
+return (num & 0xFF);
+}
+
+int main()
+{
+cout << "Lower byte = " << (int)getLowerByte(0xFFFFFF) << endl;
+return 0;
+}
+
+
+
+////////////Q8
+
+#include <iostream>
+using namespace std;
+unsigned short significantBits(unsigned int num) {
+    int y=0,i=0;
+    for(i=0;i<=31;i++){
+    if((num >> i) & 1 == 1)
+    y=i;
+    }
+    return y+1;
+}
+int main()
+{
+cout << "bits needed = " << (int)significantBits(1000) << endl;
+return 0;
+}
+
+//////////Q9
+
+#include <iostream>
+using namespace std;
+bool isOrdered(double a[], int size) {
+    int y=0,i=0;
+    for(i=1;i<=size;i++){
+    if(a[i]>a[i-1]){
+    y++;
+    }
+    }
+    if(y==size){
+    cout << "In order = True" << endl;
+    return true;
+    }
+    else
+     cout << "In order = False" << endl;
+     return false;
+}
+int main()
+{
+  double arr[] = {-1,2,3,4,7};
+  isOrdered(arr, sizeof(arr)/sizeof(arr[0]));
+ return 0;
+}
+
+////////Q10
+
+#include <iostream>
+using namespace std;
+
+void checkers(int num) {
+int i=0,y=0;
+for(y=1;y<=num;y++){
+for(i=1;i<=num/2;i++){
+cout << (char) 178 << (char) 178 << "  " ;
+
+}
+cout << endl;
+if ( y % 2 != 0){
+cout << "  ";
+
+}
+}
+
+}
+
+int main()
+{
+
+
+checkers(8);
+
+ return 0;
+}
+
+
+
+
+
+
+
+

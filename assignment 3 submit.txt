@@ -1,0 +1,363 @@
+/////////Q1
+#include <iostream>
+using namespace std;
+std::string repeat(const string& str, unsigned num)
+{
+string count;
+    while (num--)
+        count += str;
+    return count;
+}
+int main(){
+    cout << repeat("echo! ",5) << endl; 
+
+}
+
+
+/////////Q2
+
+#include <iostream>
+using namespace std;
+void printBigX(int N) {
+//////Prints top half
+for(int i=N/2;i>0;i--){
+for(int y=(N/2-i);y>0;y--){
+cout << " ";
+}
+cout << "X" ;
+if (N%2 == 0){
+for(int y=i*2-2;y>0;y--){
+cout << " ";
+}
+}
+else {
+for(int y=i*2-1;y>0;y--){
+cout << " ";
+}
+}
+cout << "X" << endl;
+}
+//////prints midddle x if odd number
+if( N % 2 != 0){
+for(int y=N/2;y>0;y--){
+cout << " ";
+}
+cout << "X" << endl;
+}
+//////Prints bottom half
+for(int i=0;i<N/2;i++){
+for(int y=0;y<(N/2-i-1);y++){
+cout << " ";
+}
+cout << "X" ;
+if (N%2 == 0){
+for(int y=0;y<i*2;y++){
+cout << " ";
+}
+}
+else {
+for(int y=0;y<i*2+1;y++){
+cout << " ";
+}
+}
+cout << "X" << endl;
+}
+}
+int main()
+{
+    printBigX(30);
+    return 0;
+}
+
+//////////Q3
+
+#include <iostream>
+using namespace std;
+class Book {
+private:
+    string  author,title,year;
+
+public:
+    Book(){
+    author = "";
+    title = "";
+    year="";
+    }
+   Book(const string auth, const string tit,const string a) {
+    year = a;
+    author = auth;
+    title = tit;
+    }
+
+    string getAuthor() {
+        return author;
+    }
+    string getTitle() {
+        return title;
+    }
+    string getYear() {
+        return year;
+    }
+};
+
+
+////////Q4
+
+
+#include <iostream>
+using namespace std;
+
+class Book {
+private:
+    string  author,title,year;
+
+public:
+    Book(){
+    author = "";
+    title = "";
+    year="";
+    }
+   Book(const string auth, const string tit,const string a) {
+    year = a;
+    author = auth;
+    title = tit;
+    }
+
+    string getAuthor() {
+        return author;
+    }
+    string getTitle() {
+        return title;
+    }
+    string getYear() {
+        return year;
+    }
+};
+int countBooksByAuthor(Book bookList[], int size, string author) {
+string temp;
+int a=0,b=0;
+for(int i=0;i<size;i++){
+temp=bookList[i].getAuthor();
+a = (bookList[i].getAuthor()).find(author);
+
+if(a>=0) b++;
+}
+return b;
+}
+int main()
+{
+    Book books[] = {
+    Book("B. Stroustrup", "A Tour of C++", "2018"),
+     Book("J. Bloch", "Effective Java", "2018"),
+     Book("B. Stroustrup", "The C++ Programming Language(Fourth Edition)", "2013"),
+     Book("B. McLaughlin, G. Pollice, D. West", "Head First Object Oriented Analysis and Design", "2006"),
+     Book("B. McLaughlin", "Java and XML", "2006") };
+string searchAuthor = "B. McLaughlin";
+cout << "There are " << countBooksByAuthor(books, 5, searchAuthor) << " books by author " << searchAuthor << endl;
+    return 0;
+}
+
+
+/////////Q5
+
+
+#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+    double R,I;
+public:
+    Complex(){
+    R = 0;
+    I = 0;
+    }
+   Complex(double a,double b) {
+    R = a;
+    I = b;
+    }
+    void print() {
+    cout << R << I << "i" << endl;
+    }
+};
+int main()
+{
+    Complex c1(2.7,-5.2);
+c1.print();  // should print “2.7 – 5.2i”
+    return 0;
+}
+
+
+//////////Q6
+
+#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+    double R,I;
+public:
+    Complex(){
+    R = 0;
+    I = 0;
+    }
+   Complex(double a,double b) {
+    R = a;
+    I = b;
+    }
+
+    Complex conj(){
+
+    return Complex(R,I*-1);
+    }
+    Complex multiplyBy(const Complex & z) {
+    return Complex((R*z.R-I*z.I),((I*z.R)+(z.I*R)));
+    }
+
+    void print() {
+    cout << R;
+    if(I<0){cout << " - ";
+    cout << I*-1 << "i" << endl;
+    }
+    else{ cout << " + ";
+    cout << I << "i" << endl;
+    }
+    }
+};
+
+int main()
+{
+    Complex c1(2.7,-5.2);
+c1.print();   // prints “2.7 – 5.2i”
+Complex c2 = c1.conj();
+c2.print();   // prints “2.7 + 5.2i”
+Complex c3 = c1.multiplyBy(c2);
+c3.print();   // prints “34.33 + 0i”  return 0;
+}
+
+
+///////////Q7
+
+#include <cmath>
+#include <iostream>
+using namespace std;
+
+class Point {
+private:
+    double X,Y;
+public:
+    Point(){
+    X = 0;
+    Y = 0;
+    }
+   Point(double a,double b) {
+    X = a;
+    Y = b;
+    }
+    double distanceTo(const Point & p){
+    return sqrt(pow(X-p.X,2)+pow(Y-p.Y,2));
+    }
+};
+int main()
+{
+    Point p1(1.0,1.0);
+Point p2(2.0,2.0);
+cout << "Distance between points is " << p1.distanceTo(p2) << endl;
+return 1;
+}
+
+
+///////////Q8
+
+#include <cmath>
+#include <iostream>
+using namespace std;
+class Point {
+private:
+    double X,Y;
+public:
+    Point(){
+    X = 0;
+    Y = 0;
+    }
+   Point(double a,double b) {
+    X = a;
+    Y = b;
+    }
+
+    double distanceTo(const Point & p){
+    return sqrt(pow(X-p.X,2)+pow(Y-p.Y,2));
+    }
+};
+class Polygon {
+private:
+    int numPointsinArray;
+    Point points[10];
+public:
+    Polygon() : numPointsinArray(0) {}
+
+    bool add(Point p) {
+    if(numPointsinArray<10){
+        points[numPointsinArray] = p;
+        numPointsinArray++;
+        cout << "Point added" << endl;
+        return 1;
+    }
+    else{
+            cout << "Too Many Point" << endl;
+            return 0;}
+    }
+
+
+    double length() {
+    double val=0;
+    for(int y=0;y<numPointsinArray;y++){
+        val= val + points[y].distanceTo(points[y+1]);
+    }
+    return val;
+    }
+};
+int main()
+{
+    Polygon poly;
+poly.add(Point(0,0));
+poly.add(Point(1,0));
+poly.add(Point(1,1));
+poly.add(Point(0,1));
+cout << "polygon length: " << poly.length() << endl;
+return 1;
+}
+
+
+////////Q9
+
+
+#include <iostream>
+using namespace std;
+
+class CyclicString {
+private:
+    string str;
+    int num;
+public:
+   CyclicString(string a) {
+    str = a;
+    num=0;
+    }
+    char next(){
+    num++;
+    int a=str.length()+1;
+    if(num == a)num=1;
+    return str.at(num-1);
+    }
+};
+int main()
+{
+  CyclicString s("Repeat Me!");
+for (int i=0; i<50; i++)
+   cout << s.next();
+return 1;
+}
+
+
+

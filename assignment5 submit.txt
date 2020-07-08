@@ -1,0 +1,100 @@
+/////////////Q1
+
+#include <iostream>
+using namespace std;
+void printNumberedChars(string str, int i=0) {
+i++;
+if(i<str.length())
+printNumberedChars(str, i);
+cout << str.length()-i+1 << ". " << str[str.length()-i] << endl;
+}
+int main()
+{
+     printNumberedChars("hello");
+    return 0;
+}
+
+//////////Q2
+#include <iostream>
+using namespace std;
+int sumArray(const int* arr, unsigned int size) {
+if ( (size==1)){
+return (arr[size-1]);
+}
+else{
+ return sumArray(arr,size-1) + arr[size-1];
+}
+}
+int main()
+{
+    int nums[] = {3,4,7,10,20,6,30,50,5,6,4};
+    cout << sumArray(nums,11) << endl;
+    return 0;
+}
+
+
+///////////Q3
+
+#include <iostream>
+using namespace std;
+long lowestPrimeFactor(long N, long i=2) {
+if(N<2)return 1;
+if (i>N/2)return N;
+if (N % i == 0 )return i;
+else lowestPrimeFactor(N,i+1);
+}
+
+int main()
+{
+    cout << lowestPrimeFactor(11) << endl;
+    return 0;
+}
+
+///////////Q4
+
+#include <iostream>
+using namespace std;
+
+long lowestPrimeFactor(long N, long i=2) {
+if(N<2)return 1;
+if (i>N/2)return N;
+if (N % i == 0 )return i;
+else lowestPrimeFactor(N,i+1);
+}
+void printPrimeFactors(long N) {
+long b=0;
+b=lowestPrimeFactor(N);
+if(b==N || b==1){
+        cout << b << endl;
+        return ;}
+for(int i=2;i<=N/2 ;i++){
+if(N % i == 0 ){
+    printPrimeFactors(N/i);
+ break;
+}
+}
+cout << b << endl;
+}
+int main()
+{
+    printPrimeFactors(1289531243);
+    return 0;
+}
+
+
+
+//////////Q5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
